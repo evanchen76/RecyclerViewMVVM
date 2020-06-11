@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="evan.chen.tutorial.recyclerviewmvvm.MainViewModel" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/layoutView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/noItemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.empty ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="No Data"
+                android:textSize="24sp" />
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.empty ? View.GONE : View.VISIBLE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </FrameLayout>
+
+</layout>
+

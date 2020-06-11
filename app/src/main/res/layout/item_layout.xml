@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.widget.CompoundButton" />
+        <variable
+            name="item"
+            type="evan.chen.tutorial.recyclerviewmvvm.Item" />
+        <variable
+            name="viewModel"
+            type="evan.chen.tutorial.recyclerviewmvvm.MainViewModel" />
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="@{() -> viewModel.openItem(item.itemName)}"
+        android:padding="16dp"
+        app:cardElevation="2dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:text="@{item.itemName}" />
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:checked="@{item.selected}"
+                android:gravity="end"
+                android:onClick="@{(view) -> viewModel.selectItem(item, ((CompoundButton)view).isChecked())}" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
